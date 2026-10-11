@@ -1,0 +1,20 @@
+{
+  "success_indicators": [
+    "W42-W45 4リリースに CSV + gzip アセットアップロード完了（各2 asset、計8 asset）",
+    "GitHub API で asset 検証済（curl + gh release view の両方で assets=2 確認）",
+    "各リリースに notes 追加済"
+  ],
+  "verification_commands": [
+    "$ gh release view weekly/2026-W42 --repo atushi1841/kensho-datasets --json assets => {\"assets\":[{\"name\":\"anime_figure_prices.csv\",\"size\":931911},{\"name\":\"anime_figure_prices.csv.gz\",\"size\":194775}]}",
+    "$ curl -s https://api.github.com/repos/atushi1841/kensho-datasets/releases/tags/weekly/2026-W42 | python3 -c \"import json,sys;d=json.load(sys.stdin);print('tag:',d['tag_name'],'| assets:',len(d['assets']))\" => tag: weekly/2026-W42 | assets: 2",
+    "$ gh release edit weekly/2026-W42 --repo atushi1841/kensho-datasets --notes \"...\" => https://github.com/atushi1841/kensho-datasets/releases/tag/weekly/2026-W42"
+  ],
+  "artifact_paths": [
+    "/mnt/d/Project2/kensho-datasets/reports/revenue-worker-w42w45-assets-2026-10-12.md"
+  ],
+  "evidence_hashes": [
+    "sha256:7041f9d1809ebb0b9dacebe2b144b00cd680221c42a87393a95fae4bde7c7c83"
+  ],
+  "task_id": "t_3aeb7a29",
+  "status": "complete"
+}
